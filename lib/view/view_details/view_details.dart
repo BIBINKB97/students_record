@@ -3,14 +3,15 @@ import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/widgets/textform_field.dart';
 
-class AddStudentDetails extends StatelessWidget {
-  const AddStudentDetails({super.key});
+class ViewDetails extends StatelessWidget {
+  const ViewDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Student Details'),
+        title: Text('Details'),
+        centerTitle: true,
         backgroundColor: ktheme,
       ),
       body: SingleChildScrollView(
