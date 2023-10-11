@@ -15,19 +15,19 @@ class HomePage extends StatelessWidget {
         title: Text('All Students'),
         backgroundColor: ktheme,
         elevation: 0,
-        actions: [Icon(Icons.search), kwidth20],
-      ),
-      body: ListView(
-        children: const [
-          ListTiles(),
-          ListTiles(),
-          ListTiles(),
-          ListTiles(),
-          ListTiles(),
-          ListTiles(),
-          ListTiles(),
-          ListTiles(),
+        actions: const [
+          Icon(Icons.search),
+          kwidth20,
         ],
+      ),
+      body: ListView.separated(
+        itemBuilder: (context, index) {
+          return ListTiles();
+        },
+        separatorBuilder: (context, index) {
+          return Divider();
+        },
+        itemCount: 10,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

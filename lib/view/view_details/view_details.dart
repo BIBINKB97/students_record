@@ -3,9 +3,14 @@ import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/widgets/textform_field.dart';
 
-class ViewDetails extends StatelessWidget {
+class ViewDetails extends StatefulWidget {
   const ViewDetails({super.key});
 
+  @override
+  State<ViewDetails> createState() => _ViewDetailsState();
+}
+
+class _ViewDetailsState extends State<ViewDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,18 +30,6 @@ class ViewDetails extends StatelessWidget {
               ),
             ),
             kheight30,
-            TextForm(
-              hintTxt: 'name',
-            ),
-            TextForm(
-              hintTxt: 'age',
-            ),
-            TextForm(
-              hintTxt: 'domain',
-            ),
-            TextForm(
-              hintTxt: 'batch',
-            ),
             TextButton(
               onPressed: () {},
               child: Text('Save'),
