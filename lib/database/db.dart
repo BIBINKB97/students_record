@@ -15,7 +15,6 @@ Future<void> addStudent(StudentModel value) async {
 Future<void> getAllStudents() async {
   final studendDb = await Hive.openBox<StudentModel>('STDB');
   studentListNotifier.value.clear();
-
   studentListNotifier.value.addAll(studendDb.values);
   studentListNotifier.notifyListeners();
 }

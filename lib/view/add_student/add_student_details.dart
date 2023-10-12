@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:student_records/database/db.dart';
 import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/widgets/textform_field.dart';
+import 'package:student_records/view/home_page/homepage.dart';
 
 class AddStudentDetails extends StatelessWidget {
   AddStudentDetails({super.key});
@@ -48,6 +50,8 @@ class AddStudentDetails extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onAddButton();
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => HomePage()));
               },
               child: Text('Save'),
             ),
@@ -71,5 +75,6 @@ class AddStudentDetails extends StatelessWidget {
       domain: domain,
       batch: batch,
     );
+    addStudent(student);
   }
 }

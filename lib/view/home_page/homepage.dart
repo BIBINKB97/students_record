@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_records/database/db.dart';
+import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/add_student_details.dart';
@@ -9,26 +11,37 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getAllStudents();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text('All Students'),
-        backgroundColor: ktheme,
+        backgroundColor: ktheme,  
         elevation: 0,
         actions: const [
           Icon(Icons.search),
           kwidth20,
         ],
       ),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return ListTiles();
-        },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
-        itemCount: 10,
-      ),
+      body: ValueListenableBuilder(
+          valueListenable: studentListNotifier,
+          builder: (BuildContext context, List<StudentModel> studentList,
+              Widget? child) {
+            return ListView.separated(
+              itemBuilder: (context, index) {
+                final data = studentList[index];
+                return ListTiles(
+                  batch: data.batch,
+                  domain: data.domain,
+                  name: data.name,
+                );
+              },
+              separatorBuilder: (context, index) {
+                return Divider();
+              },
+              itemCount: studentList.length,
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
@@ -40,3 +53,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+ 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
-import 'package:student_records/view/add_student/widgets/textform_field.dart';
 
 class ViewDetails extends StatefulWidget {
   const ViewDetails({super.key});

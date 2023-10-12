@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ListTiles extends StatelessWidget {
-  const ListTiles({super.key});
+  final String name;
+  final String domain;
+  final String batch;
+
+  const ListTiles({
+    super.key,
+    required this.name,
+    required this.domain,
+    required this.batch,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +21,9 @@ class ListTiles extends StatelessWidget {
           radius: 25,
           backgroundImage: AssetImage('images/user.png'),
         ),
-        title: Text('name'),
-        subtitle: Text('domain'),
-        trailing: Text('BATCH'),
+        title: Text(name),
+        subtitle: Text(domain),
+        trailing: Text(batch),
       ),
     );
   }
