@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('All Students'),
-        backgroundColor: ktheme,  
+        backgroundColor: ktheme,
         elevation: 0,
         actions: const [
           Icon(Icons.search),
@@ -30,7 +30,9 @@ class HomePage extends StatelessWidget {
             return ListView.separated(
               itemBuilder: (context, index) {
                 final data = studentList[index];
-                return ListTiles(
+                return StudentTile(
+                  image: 'images/user.png',
+                  onTap: () {},
                   batch: data.batch,
                   domain: data.domain,
                   name: data.name,
@@ -53,4 +55,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
- 
