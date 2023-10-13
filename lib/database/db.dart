@@ -18,3 +18,8 @@ Future<void> getAllStudents() async {
   studentListNotifier.value.addAll(studendDb.values);
   studentListNotifier.notifyListeners();
 }
+
+Future<void> deleteAlldata() async {
+  final studentDb = await Hive.openBox<StudentModel>('STDB');
+  studentDb.clear();
+}

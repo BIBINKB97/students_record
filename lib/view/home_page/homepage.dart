@@ -4,6 +4,7 @@ import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/add_student_details.dart';
+import 'package:student_records/view/home_page/widgets/drawer.dart';
 import 'package:student_records/view/home_page/widgets/tile.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,6 +24,7 @@ class HomePage extends StatelessWidget {
           kwidth20,
         ],
       ),
+      drawer: CustomDrawer(),
       body: ValueListenableBuilder(
           valueListenable: studentListNotifier,
           builder: (BuildContext context, List<StudentModel> studentList,
@@ -31,8 +33,10 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final data = studentList[index];
                 return StudentTile(
+                  onTap: () {
+                    deleteAlldata();
+                  },
                   image: 'images/user.png',
-                  onTap: () {},
                   batch: data.batch,
                   domain: data.domain,
                   name: data.name,

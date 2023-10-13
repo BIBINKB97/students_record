@@ -18,7 +18,7 @@ class StudentTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: onTap,
+      onLongPress: onTap,
       leading: CircleAvatar(
         radius: 25,
         backgroundImage: AssetImage(image),
