@@ -17,7 +17,8 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return StudentModel(
-      name: fields[0] as String,
+      id: fields[0] as int?,
+      name: fields[4] as String,
       age: fields[1] as String,
       domain: fields[2] as String,
       batch: fields[3] as String,
@@ -27,15 +28,17 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
   @override
   void write(BinaryWriter writer, StudentModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.age)
       ..writeByte(2)
       ..write(obj.domain)
       ..writeByte(3)
-      ..write(obj.batch);
+      ..write(obj.batch)
+      ..writeByte(4)
+      ..write(obj.name);
   }
 
   @override

@@ -22,30 +22,30 @@ class CustomDrawer extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text(
+                        title: Text(
                           'delete !',
                           style: TextStyle(color: Colors.red),
                         ),
-                        content: const Text(
+                        content: Text(
                           'This action will clear all the data in this application !',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                         actions: <Widget>[
                           TextButton(
-                            child: const Text('Cancel'),
+                            child: Text('Cancel'),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
                           ),
                           TextButton(
-                            child: const Text('Yes'),
+                            child: Text('delete'),
                             onPressed: () {
                               deleteAlldata();
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
+                                  builder: (context) => HomePage(),
                                 ),
                               );
                             },

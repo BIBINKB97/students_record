@@ -34,7 +34,39 @@ class HomePage extends StatelessWidget {
                 final data = studentList[index];
                 return StudentTile(
                   onTap: () {
-                    deleteAlldata();
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text(
+                            'delete !',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          content: Text(
+                            'This action will clear all the data in this application !',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text('Cancel'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: Text('delete'),
+                              onPressed: () {
+                                if (data.id != null) {
+                                  deleteData(data.id!);
+                                }
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                   image: 'images/user.png',
                   batch: data.batch,
