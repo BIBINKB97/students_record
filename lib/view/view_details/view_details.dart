@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
+import 'package:student_records/view/view_details/widgets/custom_container.dart';
 
 class ViewDetails extends StatefulWidget {
   const ViewDetails({super.key});
@@ -21,7 +22,7 @@ class _ViewDetailsState extends State<ViewDetails> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            kheight80,
+            kheight30,
             Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage('images/user.png'),
@@ -29,9 +30,33 @@ class _ViewDetailsState extends State<ViewDetails> {
               ),
             ),
             kheight30,
-            TextButton(
-              onPressed: () {},
-              child: Text('Save'),
+            Container(
+              height: 365,
+              width: 350,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: ktheme),
+              child: Column(
+                children: [
+                  kheight10,
+                  CustomContainer(),
+                  kheight10,
+                  CustomContainer(),
+                  kheight10,
+                  CustomContainer(),
+                  kheight10,
+                  CustomContainer(),
+                  kheight20,
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(kwhite)),
+                    onPressed: () {},
+                    child: Text(
+                      'Save',
+                      style: TextStyle(color: kblack, fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

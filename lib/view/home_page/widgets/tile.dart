@@ -4,7 +4,8 @@ class StudentTile extends StatelessWidget {
   final String name;
   final String domain;
   final String batch;
-  final Function()? onTap;
+  final Function()? onLongPress;
+    final Function()? onTap;
   final String image;
 
   const StudentTile({
@@ -12,13 +13,16 @@ class StudentTile extends StatelessWidget {
     required this.name,
     required this.domain,
     required this.batch,
-    this.onTap, required this.image,
+    required this.onLongPress,
+    required this.onTap,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onLongPress: onTap,
+      onTap: onTap,
+      onLongPress: onLongPress,
       leading: CircleAvatar(
         radius: 25,
         backgroundImage: AssetImage(image),

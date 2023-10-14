@@ -6,6 +6,7 @@ import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/add_student_details.dart';
 import 'package:student_records/view/home_page/widgets/drawer.dart';
 import 'package:student_records/view/home_page/widgets/tile.dart';
+import 'package:student_records/view/view_details/view_details.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -33,7 +34,15 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final data = studentList[index];
                 return StudentTile(
+                  image: 'images/user.png',
+                  batch: data.batch,
+                  domain: data.domain,
+                  name: data.name,
                   onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ViewDetails()));
+                  },
+                  onLongPress: () {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -43,7 +52,7 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(color: Colors.red),
                           ),
                           content: Text(
-                            'This action will clear all the data in this application !',
+                            'Are you sure ? \nyou want to delete this file ?',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
@@ -55,11 +64,9 @@ class HomePage extends StatelessWidget {
                               },
                             ),
                             TextButton(
-                              child: Text('delete'),
+                              child: Text('Yes'),
                               onPressed: () {
-                                if (data.id != null) {
-                                  deleteData(data.id!);
-                                }
+                                deleteData(data.id!);
                                 Navigator.pop(context);
                               },
                             ),
@@ -68,10 +75,6 @@ class HomePage extends StatelessWidget {
                       },
                     );
                   },
-                  image: 'images/user.png',
-                  batch: data.batch,
-                  domain: data.domain,
-                  name: data.name,
                 );
               },
               separatorBuilder: (context, index) {

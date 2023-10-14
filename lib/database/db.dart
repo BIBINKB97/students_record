@@ -10,7 +10,6 @@ Future<void> addStudent(StudentModel value) async {
   final studentDb = await Hive.openBox<StudentModel>('STDB');
   final _id = await studentDb.add(value);
   value.id = _id;
-  studentListNotifier.value.add(value);
   studentListNotifier.notifyListeners();
 }
 
