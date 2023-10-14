@@ -38,20 +38,32 @@ class _ViewDetailsState extends State<ViewDetails> {
               child: Column(
                 children: [
                   kheight10,
-                  CustomContainer(),
+                  CustomContainer(
+                    keyText: 'Name ',
+                    valueText: 'bibin',
+                  ),
                   kheight10,
-                  CustomContainer(),
+                  CustomContainer(
+                    keyText: 'Age ',
+                    valueText: '25',
+                  ),
                   kheight10,
-                  CustomContainer(),
+                  CustomContainer(
+                    keyText: 'Domain',
+                    valueText: 'Flutter',
+                  ),
                   kheight10,
-                  CustomContainer(),
+                  CustomContainer(
+                    keyText: 'Batch',
+                    valueText: 'Bck 87',
+                  ),
                   kheight20,
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(kwhite)),
                     onPressed: () {},
                     child: Text(
-                      'Save',
+                      'Edit',
                       style: TextStyle(color: kblack, fontSize: 16),
                     ),
                   ),
