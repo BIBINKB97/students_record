@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
+import 'package:student_records/view/edit_details/edit_details.dart';
 import 'package:student_records/view/view_details/widgets/custom_container.dart';
 
 class ViewDetails extends StatelessWidget {
@@ -68,7 +69,16 @@ class ViewDetails extends StatelessWidget {
                   ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(kwhite)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EditDetails(
+                            id : id,
+                                name: name,
+                                age: age,
+                                domain: domain,
+                                batch: batch,
+                              )));
+                    },
                     child: Text(
                       'Edit',
                       style: TextStyle(color: kblack, fontSize: 16),
