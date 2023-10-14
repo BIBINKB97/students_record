@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/edit_details/edit_details.dart';
@@ -70,14 +71,15 @@ class ViewDetails extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(kwhite)),
                     onPressed: () {
+                      final student = StudentModel(
+                        id: id,
+                        name: name,
+                        age: age,
+                        domain: domain,
+                        batch: batch,
+                      );
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditDetails(
-                            id : id,
-                                name: name,
-                                age: age,
-                                domain: domain,
-                                batch: batch,
-                              )));
+                          builder: (context) => EditDetails(model: student)));
                     },
                     child: Text(
                       'Edit',

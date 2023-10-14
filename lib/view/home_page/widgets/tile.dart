@@ -5,7 +5,7 @@ class StudentTile extends StatelessWidget {
   final String domain;
   final String batch;
   final Function()? onLongPress;
-    final Function()? onTap;
+  final Function()? onTap;
   final String image;
 
   const StudentTile({
@@ -28,8 +28,7 @@ class StudentTile extends StatelessWidget {
         backgroundImage: AssetImage(image),
       ),
       title: Text(name),
-      subtitle: Text(domain),
-      trailing: Text(batch),
+      trailing: Text(domain),
     );
   }
 }

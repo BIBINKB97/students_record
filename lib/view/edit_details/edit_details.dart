@@ -6,24 +6,31 @@ import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/widgets/textform_field.dart';
 import 'package:student_records/view/home_page/homepage.dart';
 
-class EditDetails extends StatelessWidget {
-  final String name;
-  final String age;
-  final String domain;
-  final String batch;
-  final int? id;
+class EditDetails extends StatefulWidget {
+  StudentModel model;
+
   EditDetails({
     super.key,
-    this.id,
-    required this.name,
-    required this.age,
-    required this.domain,
-    required this.batch,
+    required this.model,
   });
+
   final _nameController = TextEditingController();
   final _ageController = TextEditingController();
   final _domainController = TextEditingController();
   final _batchController = TextEditingController();
+  @override
+  State<EditDetails> createState() => _EditDetailsState();
+}
+
+class _EditDetailsState extends State<EditDetails> {
+  @override
+  void initState() {
+    widget._nameController.text = widget.model.name;
+    widget._ageController.text = widget.model.age;
+    widget._batchController.text = widget.model.batch;
+    widget._domainController.text = widget.model.domain;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,28 +52,28 @@ class EditDetails extends StatelessWidget {
             ),
             kheight30,
             TextForm(
-              controller: _nameController,
+              controller: widget._nameController,
               hintTxt: 'name',
             ),
             TextForm(
-              controller: _ageController,
+              controller: widget._ageController,
               hintTxt: 'age',
             ),
             TextForm(
-              controller: _domainController,
+              controller: widget._domainController,
               hintTxt: 'domain',
             ),
             TextForm(
-              controller: _batchController,
+              controller: widget._batchController,
               hintTxt: 'batch',
             ),
             TextButton(
               onPressed: () {
-                onAddButton();
+                onUpdateButton();
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => HomePage()));
               },
-              child: Text('Save'),
+              child: Text('update'),
             ),
           ],
         ),
@@ -74,20 +81,21 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Future<void> onAddButton() async {
-    final name = _nameController.text.trim();
-    final age = _ageController.text.trim();
-    final domain = _domainController.text.trim();
-    final batch = _batchController.text.trim();
+  Future<void> onUpdateButton() async {
+    final name = widget._nameController.text.trim();
+    final age = widget._ageController.text.trim();
+    final domain = widget._domainController.text.trim();
+    final batch = widget._batchController.text.trim();
     if (name.isEmpty || age.isEmpty || domain.isEmpty || batch.isEmpty) {
       return;
     }
     final student = StudentModel(
+      id: widget.model.id,
       name: name,
       age: age,
       domain: domain,
       batch: batch,
     );
-    addStudent(student);
+    updateData(student);
   }
 }
