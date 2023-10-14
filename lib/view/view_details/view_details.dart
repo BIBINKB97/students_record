@@ -3,14 +3,21 @@ import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/view_details/widgets/custom_container.dart';
 
-class ViewDetails extends StatefulWidget {
-  const ViewDetails({super.key});
+class ViewDetails extends StatelessWidget {
+  final String name;
+  final String age;
+  final String domain;
+  final String batch;
+  final int? id;
+  const ViewDetails({
+    super.key,
+    this.id,
+    required this.name,
+    required this.age,
+    required this.domain,
+    required this.batch,
+  });
 
-  @override
-  State<ViewDetails> createState() => _ViewDetailsState();
-}
-
-class _ViewDetailsState extends State<ViewDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,22 +47,22 @@ class _ViewDetailsState extends State<ViewDetails> {
                   kheight10,
                   CustomContainer(
                     keyText: 'Name ',
-                    valueText: 'bibin',
+                    valueText: name,
                   ),
                   kheight10,
                   CustomContainer(
                     keyText: 'Age ',
-                    valueText: '25',
+                    valueText: age,
                   ),
                   kheight10,
                   CustomContainer(
                     keyText: 'Domain',
-                    valueText: 'Flutter',
+                    valueText: domain,
                   ),
                   kheight10,
                   CustomContainer(
                     keyText: 'Batch',
-                    valueText: 'Bck 87',
+                    valueText: batch,
                   ),
                   kheight20,
                   ElevatedButton(

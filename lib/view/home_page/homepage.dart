@@ -39,8 +39,14 @@ class HomePage extends StatelessWidget {
                   domain: data.domain,
                   name: data.name,
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ViewDetails()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ViewDetails(
+                              id: data.id,
+                              name: data.name,
+                              age: data.age,
+                              batch: data.batch,
+                              domain: data.domain,
+                            )));
                   },
                   onLongPress: () {
                     showDialog(

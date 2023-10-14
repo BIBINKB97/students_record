@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:student_records/utils/colors.dart';
-import 'package:student_records/utils/constants.dart';
 
 class CustomContainer extends StatelessWidget {
   final String keyText;
@@ -26,10 +25,10 @@ class CustomContainer extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           VerticalDivider(
-            indent: 10,
-            endIndent: 10,
+            indent: 15,
+            endIndent: 15,
             color: ktheme,
-            thickness: 1,
+            thickness: 1.5,
           ),
           Text(
             valueText,
