@@ -3,11 +3,16 @@ import 'package:student_records/utils/constants.dart';
 
 class TextForm extends StatelessWidget {
   final String hintTxt;
+  final int? maxLength;
+  final TextInputType keyboardtype;
   final TextEditingController controller;
   const TextForm({
+
     super.key,
     required this.hintTxt,
     required this.controller,
+    this.maxLength,
+    required this.keyboardtype,
   });
 
   @override
@@ -17,6 +22,8 @@ class TextForm extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: TextFormField(
+            keyboardType: keyboardtype,
+            maxLength: maxLength,
             controller: controller,
             decoration: InputDecoration(
                 hintText: hintTxt,

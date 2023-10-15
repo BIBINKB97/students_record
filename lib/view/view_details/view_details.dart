@@ -78,7 +78,7 @@ class ViewDetails extends StatelessWidget {
                         domain: domain,
                         batch: batch,
                       );
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => EditDetails(model: student)));
                     },
                     child: Text(

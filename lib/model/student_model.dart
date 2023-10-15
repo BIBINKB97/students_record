@@ -5,16 +5,12 @@ part 'student_model.g.dart';
 class StudentModel {
   @HiveField(0)
   int? id;
-
   @HiveField(1)
   final String age;
-
   @HiveField(2)
   final String domain;
-
   @HiveField(3)
   final String batch;
-
   @HiveField(4)
   final String name;
 

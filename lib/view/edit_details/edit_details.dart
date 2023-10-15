@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:student_records/database/db.dart';
 import 'package:student_records/model/student_model.dart';
@@ -52,26 +54,31 @@ class _EditDetailsState extends State<EditDetails> {
             ),
             kheight30,
             TextForm(
+              keyboardtype: TextInputType.text,
               controller: widget._nameController,
               hintTxt: 'name',
             ),
             TextForm(
+              keyboardtype: TextInputType.number,
+              maxLength: 2,
               controller: widget._ageController,
               hintTxt: 'age',
             ),
             TextForm(
+              keyboardtype: TextInputType.text,
               controller: widget._domainController,
               hintTxt: 'domain',
             ),
             TextForm(
+              keyboardtype: TextInputType.text,
               controller: widget._batchController,
               hintTxt: 'batch',
             ),
             TextButton(
               onPressed: () {
                 onUpdateButton();
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomePage()));
               },
               child: Text('update'),
             ),

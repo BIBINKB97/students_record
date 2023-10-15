@@ -32,26 +32,31 @@ class AddStudentDetails extends StatelessWidget {
             ),
             kheight30,
             TextForm(
+              keyboardtype: TextInputType.text,
               controller: _nameController,
               hintTxt: 'name',
             ),
             TextForm(
+              maxLength: 2,
+              keyboardtype: TextInputType.number,
               controller: _ageController,
               hintTxt: 'age',
             ),
             TextForm(
+              keyboardtype: TextInputType.text,
               controller: _domainController,
               hintTxt: 'domain',
             ),
             TextForm(
+              keyboardtype: TextInputType.text,
               controller: _batchController,
               hintTxt: 'batch',
             ),
             TextButton(
               onPressed: () {
                 onAddButton();
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => HomePage()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomePage()));
               },
               child: Text('Save'),
             ),

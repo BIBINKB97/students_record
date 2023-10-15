@@ -4,7 +4,6 @@ import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
 import 'package:student_records/utils/constants.dart';
 import 'package:student_records/view/add_student/add_student_details.dart';
-import 'package:student_records/view/home_page/widgets/drawer.dart';
 import 'package:student_records/view/home_page/widgets/tile.dart';
 import 'package:student_records/view/view_details/view_details.dart';
 
@@ -25,7 +24,6 @@ class HomePage extends StatelessWidget {
           kwidth20,
         ],
       ),
-      drawer: CustomDrawer(),
       body: ValueListenableBuilder(
           valueListenable: studentListNotifier,
           builder: (BuildContext context, List<StudentModel> studentList,
