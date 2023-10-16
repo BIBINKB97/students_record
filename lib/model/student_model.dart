@@ -9,7 +9,7 @@ class StudentModel {
   final String age;
   @HiveField(2)
   final String domain;
-  @HiveField(3)
+  @HiveField(3)                   
   final String batch;
   @HiveField(4)
   final String name;
