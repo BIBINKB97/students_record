@@ -1,3 +1,7 @@
+// ignore_for_file: unnecessary_null_comparison
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
@@ -6,6 +10,7 @@ import 'package:student_records/view/edit_details/edit_details.dart';
 import 'package:student_records/view/view_details/widgets/custom_container.dart';
 
 class ViewDetails extends StatelessWidget {
+  final String image;
   final String name;
   final String age;
   final String domain;
@@ -18,6 +23,7 @@ class ViewDetails extends StatelessWidget {
     required this.age,
     required this.domain,
     required this.batch,
+    required this.image,
   });
 
   @override
@@ -34,7 +40,9 @@ class ViewDetails extends StatelessWidget {
             kheight30,
             Center(
               child: CircleAvatar(
-                backgroundImage: AssetImage('images/user.png'),
+                backgroundImage: image == null
+                    ? AssetImage('images/user.png')
+                    : FileImage(File(image)) as ImageProvider,
                 radius: 80,
               ),
             ),
@@ -72,6 +80,7 @@ class ViewDetails extends StatelessWidget {
                         backgroundColor: MaterialStatePropertyAll(kwhite)),
                     onPressed: () {
                       final student = StudentModel(
+                        image: image,
                         id: id,
                         name: name,
                         age: age,

@@ -1,3 +1,7 @@
+// ignore_for_file: unnecessary_null_comparison
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:student_records/database/db.dart';
 import 'package:student_records/model/student_model.dart';
@@ -32,13 +36,16 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final data = studentList[index];
                 return StudentTile(
-                  image: 'images/user.png',
+                  image: data.image == null
+                      ? AssetImage('images/user.png')
+                      : FileImage(File(data.image)) as ImageProvider,
                   batch: data.batch,
                   domain: data.domain,
                   name: data.name,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ViewDetails(
+                              image: data.image,
                               id: data.id,
                               name: data.name,
                               age: data.age,

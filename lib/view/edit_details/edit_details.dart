@@ -1,6 +1,9 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:student_records/database/db.dart';
 import 'package:student_records/model/student_model.dart';
 import 'package:student_records/utils/colors.dart';
@@ -34,6 +37,22 @@ class _EditDetailsState extends State<EditDetails> {
     super.initState();
   }
 
+  File? image;
+
+  Future pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
+    final tempImage = File(image.path);
+    setState(() => this.image = tempImage);
+  }
+
+  Future gallery() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+    final tempImage = File(image.path);
+    setState(() => this.image = tempImage);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +67,95 @@ class _EditDetailsState extends State<EditDetails> {
             kheight80,
             Center(
               child: CircleAvatar(
-                backgroundImage: AssetImage('images/user.png'),
+                backgroundImage: image == null
+                    ? FileImage(File(widget.model.image))
+                    : FileImage(File(image!.path)),
                 radius: 80,
               ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                minimumSize: Size(150, 50),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+              ),
+              child: Column(
+                children: const [
+                  Icon(
+                    Icons.camera_alt_sharp,
+                    size: 24.0,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    'Edit Image',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
+                ],
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                  backgroundColor: Colors.black,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SizedBox(
+                        height: 200,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 48),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  minimumSize: Size(150, 50)),
+                              child: Column(
+                                children: const [
+                                  Icon(
+                                    Icons.camera,
+                                    color: Colors.black,
+                                    size: 24.0,
+                                  ),
+                                  Text(
+                                    'Camera',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              onPressed: () => pickImage(),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  minimumSize: Size(150, 50)),
+                              child: Column(
+                                children: const [
+                                  Icon(
+                                    Icons.photo,
+                                    size: 24.0,
+                                    color: Colors.black,
+                                  ),
+                                  Text(
+                                    'Gallery',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              onPressed: () => gallery(),
+                            )
+                          ],
+                        ));
+                  },
+                );
+              },
             ),
             kheight30,
             TextForm(
@@ -98,6 +203,7 @@ class _EditDetailsState extends State<EditDetails> {
     }
     final student = StudentModel(
       id: widget.model.id,
+      image: widget.model.image,
       name: name,
       age: age,
       domain: domain,

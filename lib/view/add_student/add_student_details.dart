@@ -178,10 +178,12 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
     final age = _ageController.text.trim();
     final domain = _domainController.text.trim();
     final batch = _batchController.text.trim();
-    if (name.isEmpty || age.isEmpty || domain.isEmpty || batch.isEmpty) {
+    final dp = image!.path;
+    if (dp.isEmpty ||name.isEmpty || age.isEmpty || domain.isEmpty || batch.isEmpty) {
       return;
     }
     final student = StudentModel(
+      image: dp,
       name: name,
       age: age,
       domain: domain,

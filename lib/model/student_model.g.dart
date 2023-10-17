@@ -18,6 +18,7 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
     };
     return StudentModel(
       id: fields[0] as int?,
+      image: fields[5] as String,
       name: fields[4] as String,
       age: fields[1] as String,
       domain: fields[2] as String,
@@ -28,7 +29,7 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
   @override
   void write(BinaryWriter writer, StudentModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class StudentModelAdapter extends TypeAdapter<StudentModel> {
       ..writeByte(3)
       ..write(obj.batch)
       ..writeByte(4)
-      ..write(obj.name);
+      ..write(obj.name)
+      ..writeByte(5)
+      ..write(obj.image);
   }
 
   @override

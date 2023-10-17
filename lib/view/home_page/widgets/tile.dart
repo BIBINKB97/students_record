@@ -6,7 +6,7 @@ class StudentTile extends StatelessWidget {
   final String batch;
   final Function()? onLongPress;
   final Function()? onTap;
-  final String image;
+  final ImageProvider image;
 
   const StudentTile({
     super.key,
@@ -25,7 +25,7 @@ class StudentTile extends StatelessWidget {
       onLongPress: onLongPress,
       leading: CircleAvatar(
         radius: 25,
-        backgroundImage: AssetImage(image),
+        backgroundImage: image,
       ),
       title: Text(name),
       trailing: Text(domain),
