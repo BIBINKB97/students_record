@@ -73,9 +73,10 @@ class _EditDetailsState extends State<EditDetails> {
                 radius: 80,
               ),
             ),
+            kheight20,
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
+                backgroundColor: ktheme,
                 minimumSize: Size(150, 50),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),

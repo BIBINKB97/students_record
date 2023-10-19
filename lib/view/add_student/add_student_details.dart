@@ -67,14 +67,19 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: Colors.black,
+                  backgroundColor: ktheme,
                   minimumSize: Size(150, 50)),
-              child: Text(
-                "Add photo",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              child: Column(
+                children: [
+                  Icon(Icons.add_a_photo), 
+                  Text(
+                    "Add photo",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
+                ],
               ),
               onPressed: () {
                 showModalBottomSheet(
@@ -179,7 +184,11 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
     final domain = _domainController.text.trim();
     final batch = _batchController.text.trim();
     final dp = image!.path;
-    if (dp.isEmpty ||name.isEmpty || age.isEmpty || domain.isEmpty || batch.isEmpty) {
+    if (dp.isEmpty ||
+        name.isEmpty ||
+        age.isEmpty ||
+        domain.isEmpty ||
+        batch.isEmpty) {
       return;
     }
     final student = StudentModel(

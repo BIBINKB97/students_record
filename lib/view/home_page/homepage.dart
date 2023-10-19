@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:student_records/database/db.dart';
 import 'package:student_records/model/student_model.dart';
@@ -11,21 +10,82 @@ import 'package:student_records/view/add_student/add_student_details.dart';
 import 'package:student_records/view/home_page/widgets/tile.dart';
 import 'package:student_records/view/view_details/view_details.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Icon customIcon = const Icon(
+    Icons.search,
+    color: Colors.white,
+    size: 35,
+  );
+  Widget customSearchBar = const Text(
+    "All Students",
+    style: TextStyle(
+        color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
+  );
   @override
   Widget build(BuildContext context) {
     getAllStudents();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('All Students'),
+        title: customSearchBar,
         backgroundColor: ktheme,
         elevation: 0,
-        actions: const [
-          Icon(Icons.search),
-          kwidth20,
+        actions: <Widget>[
+          InkWell(
+            onTap: () {
+              setState(() {
+                if (customIcon.icon == Icons.search) {
+                  customIcon = Icon(
+                    Icons.cancel,
+                    color: Colors.white,
+                  );
+                  customSearchBar = TextField(
+                    onChanged: (value) {
+                      search(value);
+                    },
+                    textInputAction: TextInputAction.go,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      hintText: 'Search',
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                    ),
+                  );
+                } else {
+                  customIcon = Icon(
+                    Icons.search,
+                    size: 35,
+                    color: Colors.white,
+                  );
+                  customSearchBar = Text(
+                    "All Students",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600),
+                  );
+                }
+              });
+            },
+            child: SizedBox(
+              width: 100,
+              child: customIcon,
+            ),
+          ),
         ],
       ),
       body: ValueListenableBuilder(
