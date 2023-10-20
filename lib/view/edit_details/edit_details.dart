@@ -44,6 +44,7 @@ class _EditDetailsState extends State<EditDetails> {
     if (image == null) return;
     final tempImage = File(image.path);
     setState(() => this.image = tempImage);
+    Navigator.pop(context);
   }
 
   Future gallery() async {
@@ -51,6 +52,7 @@ class _EditDetailsState extends State<EditDetails> {
     if (image == null) return;
     final tempImage = File(image.path);
     setState(() => this.image = tempImage);
+    Navigator.pop(context);
   }
 
   @override
@@ -204,12 +206,21 @@ class _EditDetailsState extends State<EditDetails> {
     }
     final student = StudentModel(
       id: widget.model.id,
-      image: widget.model.image,
       name: name,
       age: age,
       domain: domain,
       batch: batch,
+      image: image == null ? widget.model.image : image!.path,
     );
     updateData(student);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Center(child: Text('Data Updated Successfully !')),
+      margin: EdgeInsets.all(20),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.green,
+    ));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+      return const HomePage();
+    }));
   }
 }

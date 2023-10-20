@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:student_records/database/db.dart';
@@ -18,11 +17,8 @@ class AddStudentDetails extends StatefulWidget {
 
 class _AddStudentDetailsState extends State<AddStudentDetails> {
   final _nameController = TextEditingController();
-
   final _ageController = TextEditingController();
-
   final _domainController = TextEditingController();
-
   final _batchController = TextEditingController();
 
   File? image;
@@ -70,8 +66,8 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
                   backgroundColor: ktheme,
                   minimumSize: Size(150, 50)),
               child: Column(
-                children: [
-                  Icon(Icons.add_a_photo), 
+                children: const [
+                  Icon(Icons.add_a_photo),
                   Text(
                     "Add photo",
                     style: TextStyle(
@@ -199,5 +195,14 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
       batch: batch,
     );
     addStudent(student);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Center(child: Text('Data Added Successfully !')),
+      margin: EdgeInsets.all(20),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.green,
+    ));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+      return const HomePage();
+    }));
   }
 }
