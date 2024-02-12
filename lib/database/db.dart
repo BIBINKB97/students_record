@@ -8,8 +8,8 @@ ValueNotifier<List<StudentModel>> studentListNotifier = ValueNotifier([]);
 
 Future<void> addStudent(StudentModel value) async {
   final studentDb = await Hive.openBox<StudentModel>('STDB');
-  final _id = await studentDb.add(value);
-  value.id = _id;
+  final id = await studentDb.add(value);
+  value.id = id;
 }
 
 Future<void> getAllStudents() async {

@@ -67,7 +67,7 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
                   minimumSize: Size(150, 50)),
               child: Column(
                 children: const [
-                  Icon(Icons.add_a_photo),
+                  Icon(Icons.add_a_photo,color: Colors.white,),
                   Text(
                     "Add photo",
                     style: TextStyle(
@@ -84,6 +84,7 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
                   builder: (BuildContext context) {
                     return SizedBox(
                         height: 200,
+                        width: double.infinity,
                         child: Column(
                           children: [
                             SizedBox(height: 48),
@@ -113,7 +114,7 @@ class _AddStudentDetailsState extends State<AddStudentDetails> {
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: Colors.black,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   minimumSize: Size(200, 50)),
